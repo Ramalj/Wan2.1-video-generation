@@ -1,5 +1,6 @@
 {
     "title": "Wan 2.1 Text to Video",
+    "version": "2.0.1",
     "description": "Generate high-quality videos from text using the Wan 2.1 14B model.",
     "type": "serverless",
     "category": "video-generation",
