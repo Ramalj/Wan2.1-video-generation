@@ -1,0 +1,22 @@
+{
+    "tests": [
+        {
+            "name": "default_generation",
+            "input": {
+                "prompt": "A cinematic drone shot of a futuristic neon city at night, rain falling, 8k resolution",
+                "num_frames": 41,
+                "width": 832,
+                "height": 480,
+                "num_inference_steps": 20
+            },
+            "timeout": 600000
+        }
+    ],
+    "config": {
+        "gpuTypeId": "NVIDIA RTX A6000",
+        "gpuCount": 1,
+        "allowedCudaVersions": [
+            "12.1"
+        ]
+    }
+}

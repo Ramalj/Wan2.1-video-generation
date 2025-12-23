@@ -1,5 +1,8 @@
 # Wan 2.1 Text-to-Video - RunPod Serverless Worker
 
+[![Runpod](https://api.runpod.io/badge/Ramalj/Wan2.1-video-generation)](https://console.runpod.io/hub/Ramalj/Wan2.1-video-generation)
+
+
 This repository contains the code to run **Wan 2.1 Text-to-Video** (14B model) as a serverless worker on RunPod.
 
 ## Features

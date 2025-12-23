@@ -1,0 +1,22 @@
+{
+    "title": "Wan 2.1 Text to Video",
+    "description": "Generate high-quality videos from text using the Wan 2.1 14B model.",
+    "type": "serverless",
+    "category": "video-generation",
+    "iconUrl": "https://avatars.githubusercontent.com/u/12345678?s=200&v=4",
+    "config": {
+        "runsOn": "GPU",
+        "containerDiskInGb": 40,
+        "env": [
+            {
+                "key": "HF_TOKEN",
+                "input": {
+                    "name": "Hugging Face Token",
+                    "type": "string",
+                    "description": "Optional: HF Token if using gated models or private repos",
+                    "default": ""
+                }
+            }
+        ]
+    }
+}
