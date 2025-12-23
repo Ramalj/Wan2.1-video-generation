@@ -4,6 +4,11 @@ from diffusers import DiffusionPipeline
 from diffusers.utils import export_to_video
 import base64
 import os
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Global variable to hold the model
 pipe = None
@@ -12,7 +17,7 @@ def init_pipeline():
     """Initializes the model pipeline if not already loaded."""
     global pipe
     if pipe is None:
-        print("Loading model...")
+        logger.info("Loading Wan 2.1 model...")
         model_id = "Wan-AI/Wan2.1-T2V-14B-Diffusers"
         try:
             pipe = DiffusionPipeline.from_pretrained(
@@ -21,13 +26,13 @@ def init_pipeline():
                 variant="fp16"
             ).to("cuda")
             
-            # Optional: Enable memory optimizations if hitting OOM
+            # Memory optimizations (Uncomment for <24GB VRAM)
             # pipe.enable_model_cpu_offload() 
             # pipe.enable_vae_slicing()
             
-            print("Model loaded successfully.")
+            logger.info("Model loaded successfully.")
         except Exception as e:
-            print(f"Error loading model: {e}")
+            logger.error(f"Error loading model: {e}")
             raise e
 
 def base64_encode(file_path):
@@ -37,7 +42,11 @@ def base64_encode(file_path):
 
 def handler(job):
     """Handler function for RunPod jobs."""
-    init_pipeline()
+    try:
+        init_pipeline()
+    except Exception as e:
+        return {"error": f"Model failed to load: {str(e)}", "status": "failed"}
+
     job_input = job["input"]
     
     # Extract inputs with defaults
@@ -50,7 +59,7 @@ def handler(job):
     guidance_scale = job_input.get("guidance_scale", 6.0)
     seed = job_input.get("seed", None)
     
-    print(f"Processing job {job['id']} with prompt: {prompt}")
+    logger.info(f"Processing job {job['id']} with prompt: {prompt}")
 
     generator = None
     if seed is not None:
@@ -83,7 +92,7 @@ def handler(job):
         return {"video": video_b64, "status": "success"}
         
     except Exception as e:
-        print(f"Error during inference: {e}")
+        logger.error(f"Error during inference: {e}")
         return {"error": str(e), "status": "failed"}
 
 # Start the RunPod handler
