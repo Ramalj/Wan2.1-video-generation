@@ -20,7 +20,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Pre-download model
 COPY builder.py .
-RUN python builder.py
+RUN python -u builder.py
 
 # Copy handler
 COPY handler.py .

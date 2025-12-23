@@ -23,4 +23,10 @@ def download_model():
     print("Model downloaded successfully.")
 
 if __name__ == "__main__":
-    download_model()
+    try:
+        download_model()
+    except Exception as e:
+        import traceback
+        print(f"FAILED to download model: {e}")
+        traceback.print_exc()
+        exit(1)
