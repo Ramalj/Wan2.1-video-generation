@@ -1,0 +1,12 @@
+{
+    "input": {
+        "prompt": "A cinematic drone shot of a futuristic neon city at night, rain falling, 8k resolution",
+        "negative_prompt": "low quality, blurry, distorted, anime, cartoon",
+        "num_frames": 81,
+        "width": 832,
+        "height": 480,
+        "num_inference_steps": 30,
+        "guidance_scale": 6.0,
+        "seed": 12345
+    }
+}

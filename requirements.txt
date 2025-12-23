@@ -1,0 +1,12 @@
+torch>=2.2.0 --index-url https://download.pytorch.org/whl/cu121
+torchvision
+transformers
+accelerate
+runpod
+scipy
+imageio[ffmpeg]
+imageio-ffmpeg
+git+https://github.com/huggingface/diffusers.git
+sentencepiece
+protobuf
+xformers
